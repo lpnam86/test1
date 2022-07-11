@@ -1,0 +1,33 @@
+var cypher = function(keyword, code) {
+    let string1 = [...Array(26).keys()].map(i => String.fromCharCode(i + 65))
+    let copy = string1.slice(0)
+    let string2 =[]
+    let keyarray = keyword.split('')
+    let keycode = code.split('')
+
+    for(const j in keyarray) {
+        for(const i in copy) {
+            if(keyarray[j] == copy[i]){
+                copy.splice(i,1)
+                string2.push(keyarray[j])
+            }
+        }
+    }
+    let string3 = string2.concat(copy)
+
+    let extra = []
+    for(const i in keycode) {
+        for(const j in string3) {
+            if(keycode[i] == string3[j]) {
+                extra.push(j)
+            }
+        }
+    }
+
+    let result = []
+    for(const i in extra) {
+        result.push(string1[extra[i]])
+    }
+    result = result.toString()
+    return result.replaceAll(',','')
+}
